@@ -113,6 +113,125 @@
 \section{Introduction}
 
 \section{Background}
+This chapter provides the background for the studies presented in this dissertation. 
+We begin by reviewing foundational cybersecurity concepts, with particular emphasis in cryptographic primitives, which form a central component of undergraduate cybersecurity curricula and serve as key learning targets in our game-based interventions. 
+We then discuss adversarial thinking, a widely recognized but variably defined cognitive skill that underlies effective cybersecurity reasoning. Together, these two domains—cryptographic reasoning and adversarial reasoning—represent the conceptual focus of the instructional and assessment tools developed in this work.
+
+Next, we introduce the Cybersecurity Concept Inventory (CCI) and the Cybersecurity Curriculum Assessment (CCA), validated instruments designed to measure students’ conceptual understanding and identify persistent misconceptions. These tools provide the psychometric foundation for evaluating learning outcomes in both traditional instructional settings and interactive game-based environments.
+
+Finally, we situate this work within the broader literature on cybersecurity educational games. We review prior approaches, highlighting the tension between technical fidelity, accessibility, engagement, and assessment rigor. This review motivates the need for assessment-guided game design, which integrates validated conceptual measurement with engaging instructional experiences.
+
+\subsection{Cryptographic Primitives}
+% What is cryptography
+Cryptography aims to protect the confidentiality and authentication of
+data in the presence of adversaries~\cite{WhatCryptography}
+by transforming the data using primitives that often involve
+\textit{keys} (sequences of ones and zeros).
+\textit{Encryption primitives} support confidentiality, and \textit{signature primitives} support data authentication and often also integrity~\cite{TeachingPermitive}.
+
+Cryptographic primitives often use two types of keys:
+\begin{enumerate}
+    \item \textit{\textbf{Shared keys}} are keys that are shared among two or more communicants. To apply algorithms using shared keys, the keys must first be distributed among the group members.
+    \item \textit{\textbf{Public and private keys}} are pairs of keys generated for each individual, where public keys are accessible to everyone on the network, and private keys are known only by their owners.
+\end{enumerate}
+Learning about cryptographic primitives is a fundamental component of an undergraduate cybersecurity curriculum~\cite{TeachingPermitive}. 
+To target non-computer science students, we sought to teach players the minimum information
+about cryptographic primitives sufficient for players to understand 
+what the primitives can do and in which circumstances they can be used.
+Intentionally obscuring technical implementation details
+while satisfying our learning objectives, we offer
+the following explanation of two cryptographic primitives.
+\begin{enumerate}
+    \item \textbf{\textit{Encryption}} is used to assure that only the intended recipient can read the content of messages.
+    \item  \textbf{\textit{Digital signature}} allows the recipient to verify the identity of the purported sender of a message.
+\end{enumerate}
+
+We then teach students about the abstract notion of keys and that keys can be used to determine what people can read in an encrypted message.
+\begin{enumerate}
+    \item \textbf{\textit{Symmetric encryption}} uses pre-distributed shared keys to protect the confidentiality of messages sent among two or more communicants.
+    \item  \textbf{\textit{Asymmetric encryption}} uses a public key to
+    protect the confidentiality of a message intended for only one designated recipient. Only this designated recipient, who knows the corresponding private key, can read the message.
+\end{enumerate}
+We intentionally suppress additional complexities about primitives and keys to 
+make our educational game more accessible to non-computer science students.
+
+\subsection{Adversarial Thinking}
+Although adversarial thinking is widely recognized as the core of cybersecurity, 
+there is no single, universally agreed-upon definition. 
+For example, Hamman et al.~\cite{hamman2016teaching} 
+define adversarial thinking simply as ``thinking like hackers.'' 
+By contrast, Dark et al.~\cite{AT_dark} provide a more detailed description, 
+emphasizing ``the ability to look at system rules and think about how to exploit and subvert them as well as to 
+identify ways to alter the material, cyber, social, and physical operational space.'' 
+Dark et al.'s perspective underscores the centrality of ``\textbf{system rules}'' and the ``\textbf{multiple spaces}'' within which adversaries operate. 
+On the other hand, Schneider et al.~\cite{AT_schneider} frames adversarial thinking's central challenge as ``identifying possible player actions.'' 
+Schneider’s viewpoint highlights how adversarial thinking relies on modeling the adversary's ``\textbf{action}''.
+
+Combining these perspectives, we adopt the following definition: \emph{\textbf{adversarial thinking} is reasoning about an adversary’s motivations, capabilities, and possible actions within a given 
+operational context and set of rules.}
+
+\subsection{CCI and CCA}
+\begin{figure} [H]
+	\begin{mdframed}
+
+		\small
+		\raggedright
+		%\paragraph{Question A4-2}\label{question-a4-2}
+    \textbf{Scenario.}
+      Alice wants to send a file to Bob over an Internet connection.
+      Bob receives a file digitally signed with Alice’s private (signature) key, using a secure digital signature algorithm. The file specifies an electronic order to purchase a large number of shares for a new public offering. 
+      Contrary to expectation, the value of the stock plummets. Following this incident, Alice denies having signed the purchase order, pointing out that Charlie has been caught forging her signature.
+
+    \textbf{Question.} Choose the most likely explanation for how Charlie forged Alice’s signature:
+
+    \begin{enumerate}
+			\def\labelenumi{\Alph{enumi}.}
+			%	\tightlist
+			\item
+			Copied Alice’s digital signature from an older electronic purchase order.
+			\item
+			Mathematically analyzed Alice’s signature to deduce her private key.
+			\item
+			Changed bits in Alice’s signature to sign another electronic document.
+			\item
+			Received Alice’s private key from Alice.
+			\item
+			Created a new document producing the same digital signature.
+	\end{enumerate}
+
+	\end{mdframed}
+	\caption{Example CCI question probes the concept ``Identify possible vulnerabilities in network".}
+
+	\label{fig:example-question-intro}
+\end{figure}
+A Concept Inventory (CI) is a validated, standardized assessment tool designed to help instructors evaluate student' understanding of core concepts and identify misconceptions within a specific set of topics~\cite{CIMisconception}. To help identify the underlying misconceptions, well-designed CIs typically consist of multiple-choice questions, each with one correct option and several incorrect options, known as distractors which represent common misconceptions about the concept~\cite{CILib}.
+
+We face a dangerous shortage of cybersecurity professionals who possess the breadth of skills and knowledge needed to create and maintain safe and secure computing systems~\cite{hackers_wanted,cybersecurityshortage}. Without these professionals, businesses, governments, and many other organizations are left vulnerable to the host of nefarious actors who seek to deny access to these systems, steal information, or spread disinformation~\cite{topsecuritybreaches}. We cannot address this shortage of cybersecurity professionals unless we have an accurate understanding of which cybersecurity curricula and teaching strategies are providing students with a strong foundation. The 
+{\it Cybersecurity Assessment Tools (CATs)} project addresses this need by developing instruments that can robustly measure how well courses and curricula are forming deep conceptual knowledge in students ~\cite{delphi,MisconceptionCyber,scenarios,status, hackathon,CCIeval,cybersummit,sherman2020experiences}.
+
+The CATs project first developed and validated the {\it Cybersecurity Concept Inventory (CCI)} to assess students' conceptual knowledge of cybersecurity after a first course in the area~\cite{CCIeval}. Building on the CCI, we created the {\it Cybersecurity Curriculum Assessment (CCA)} to assess students' conceptual knowledge of cybersecurity after they had completed a multi-course curriculum in cybersecurity. The CCA covers the same core topics as the CCI, and deepens the conceptual complexity and the technical details in the questions. We created these assessments with the goal of infrastructure for future research that can help us better understand the benefits and drawbacks of different teaching methods (CCI) and curricular structures (CCA) for teaching cybersecurity. These are the first validated conceptual assessments tools for cybersecurity ~\cite{CCIeval}.
+The CCI~\cite{CCIeval} and CCA~\cite{CCA} probe students' ability
+to apply conceptual understanding to real-world scenarios effectively. 
+
+The scenarios involve five core cybersecurity concepts, which 
+33 cybersecurity experts helped identify 
+through a Delphi process~\cite{AT_Core}.
+Each assessment tool consists of 25 multiple-choice questions (MCQs) of varying difficulty levels, focusing on the same five core concepts. Each MCQ includes five alternatives: one correct answer and four distractors designed to mislead. 
+Fig.~\ref{fig:example-question-intro} illustrates an example question from the CCI, where the correct answer is D, testing the concept that anyone in the network could be malicious. 
+Most students, however, selected option A, making incorrect assumptions that the digital signatures of different documents might be identical
+if the same person signs the documents.
+Failure to select the correct answer D may reflect common cybersecurity misconceptions: failure to see vulnerabilities, 
+and underestimating the adversary.
+\subsection{Cybersecurity Games}
+Game-based approaches have increasingly been explored as a means to teach adversarial thinking and related cybersecurity concepts~\cite{lee2020game}.
+
+Early efforts in this domain frequently centered on simulation-based games, such as CyberCIEGE~\cite{cyberciege}. These games try to be more accessible to learners with limited technical backgrounds through simplified representations of security concepts. However, in striving for accurate modeling, these simulation-based games often constrain player freedom, which can diminish enjoyment and engagement.
+
+
+Some more recent games emphasize social and enjoyable experiences but at the expense of depth or fidelity in the cybersecurity content~\cite{d0x3d, de2006using, MeetingMayhem}. [d0x3d!]~\cite{d0x3d} is a table game where students act as white-hat hackers to fetch digital assets from an adversarial network encoded by the game's mechanics.
+SecurityEmpire~\cite{olano2014securityempire} introduces high school students to cybersecurity concepts
+by having students manage a company in the presence of cybersecurity risks.
+
 
 \section{Cybersecurity Assessments}
 
